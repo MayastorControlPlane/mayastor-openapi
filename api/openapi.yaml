@@ -1,0 +1,6510 @@
+openapi: 3.0.3
+info:
+  title: Mayastor RESTful API
+  version: v0
+servers:
+- url: /v0
+paths:
+  /nexuses:
+    get:
+      operationId: get_nexuses
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Nexus'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+  /nexuses/{nexus_id}:
+    delete:
+      operationId: del_nexus
+      parameters:
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+    get:
+      operationId: get_nexus
+      parameters:
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nexus'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+  /nexuses/{nexus_id}/children:
+    get:
+      operationId: get_nexus_children
+      parameters:
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Child'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+  /nexuses/{nexus_id}/children/{child_id:.*}:
+    delete:
+      operationId: del_nexus_child
+      parameters:
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: child_id:.*
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+    get:
+      operationId: get_nexus_child
+      parameters:
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: child_id:.*
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+    put:
+      operationId: put_nexus_child
+      parameters:
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: child_id:.*
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+  /nodes:
+    get:
+      operationId: get_nodes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Node'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nodes
+  /nodes/{id}:
+    get:
+      operationId: get_node
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nodes
+  /nodes/{id}/nexuses:
+    get:
+      operationId: get_node_nexuses
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Nexus'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+  /nodes/{id}/pools:
+    get:
+      operationId: get_node_pools
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Pool'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Pools
+  /nodes/{id}/replicas:
+    get:
+      operationId: get_node_replicas
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Replica'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /nodes/{node_id}/nexuses/{nexus_id}:
+    delete:
+      operationId: del_node_nexus
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+    get:
+      operationId: get_node_nexus
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nexus'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+    put:
+      operationId: put_node_nexus
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNexusBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nexus'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+  /nodes/{node_id}/nexuses/{nexus_id}/children:
+    get:
+      operationId: get_node_nexus_children
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Child'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+  /nodes/{node_id}/nexuses/{nexus_id}/children/{child_id:.*}:
+    delete:
+      operationId: del_node_nexus_child
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: child_id:.*
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+    get:
+      operationId: get_node_nexus_child
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: child_id:.*
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+    put:
+      operationId: put_node_nexus_child
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: child_id:.*
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Children
+  /nodes/{node_id}/nexuses/{nexus_id}/share:
+    delete:
+      operationId: del_node_nexus_shares
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+  /nodes/{node_id}/nexuses/{nexus_id}/share/{protocol}:
+    put:
+      operationId: put_node_nexus_share
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: nexus_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: protocol
+        required: true
+        schema:
+          enum:
+          - nvmf
+          - iscsi
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Nexuses
+  /nodes/{node_id}/pools/{pool_id}:
+    delete:
+      operationId: del_node_pool
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Pools
+    get:
+      operationId: get_node_pool
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pool'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Pools
+    put:
+      operationId: put_node_pool
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePoolBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pool'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Pools
+  /nodes/{node_id}/pools/{pool_id}/replicas:
+    get:
+      operationId: get_node_pool_replicas
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Replica'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /nodes/{node_id}/pools/{pool_id}/replicas/{replica_id}:
+    delete:
+      operationId: del_node_pool_replica
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+    get:
+      operationId: get_node_pool_replica
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Replica'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+    put:
+      operationId: put_node_pool_replica
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReplicaBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Replica'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /nodes/{node_id}/pools/{pool_id}/replicas/{replica_id}/share:
+    delete:
+      operationId: del_node_pool_replica_shares
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /nodes/{node_id}/pools/{pool_id}/replicas/{replica_id}/share/{protocol}:
+    put:
+      operationId: put_node_pool_replica_share
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: protocol
+        required: true
+        schema:
+          enum:
+          - nvmf
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /nodes/{node_id}/volumes:
+    get:
+      operationId: get_node_volumes
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Volume'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+  /nodes/{node_id}/volumes/{volume_id}:
+    get:
+      operationId: get_node_volume
+      parameters:
+      - explode: false
+        in: path
+        name: node_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+  /nodes/{node}/block_devices:
+    get:
+      operationId: get_node_block_devices
+      parameters:
+      - description: specifies whether to list all devices or only usable ones
+        explode: true
+        in: query
+        name: all
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: false
+        in: path
+        name: node
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlockDevice'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - BlockDevices
+  /nodes/{node}/jsongrpc/{method}:
+    put:
+      operationId: put_node_jsongrpc
+      parameters:
+      - explode: false
+        in: path
+        name: node
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: method
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonGeneric'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonGeneric'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - JsonGrpc
+  /pools:
+    get:
+      operationId: get_pools
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Pool'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Pools
+  /pools/{pool_id}:
+    delete:
+      operationId: del_pool
+      parameters:
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Pools
+    get:
+      operationId: get_pool
+      parameters:
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pool'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Pools
+  /pools/{pool_id}/replicas/{replica_id}:
+    delete:
+      operationId: del_pool_replica
+      parameters:
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+    put:
+      operationId: put_pool_replica
+      parameters:
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReplicaBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Replica'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /pools/{pool_id}/replicas/{replica_id}/share:
+    delete:
+      operationId: del_pool_replica_shares
+      parameters:
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /pools/{pool_id}/replicas/{replica_id}/share/{protocol}:
+    put:
+      operationId: put_pool_replica_share
+      parameters:
+      - explode: false
+        in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replica_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: protocol
+        required: true
+        schema:
+          enum:
+          - nvmf
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /replicas:
+    get:
+      operationId: get_replicas
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Replica'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /replicas/{id}:
+    get:
+      operationId: get_replica
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Replica'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Replicas
+  /specs:
+    get:
+      operationId: get_specs
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Specs'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Specs
+  /volumes:
+    get:
+      operationId: get_volumes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Volume'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+  /volumes/{volume_id}:
+    delete:
+      operationId: del_volume
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+    get:
+      operationId: get_volume
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+    put:
+      operationId: put_volume
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVolumeBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volume'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+  /volumes/{volume_id}/share/{protocol}:
+    put:
+      operationId: put_volume_share
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: protocol
+        required: true
+        schema:
+          enum:
+          - nvmf
+          - iscsi
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+  /volumes{volume_id}/share:
+    delete:
+      operationId: del_shares
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Volumes
+  /watches/volumes/{volume_id}:
+    delete:
+      operationId: del_watch_volume
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: URL callback
+        explode: true
+        in: query
+        name: callback
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "204":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Watches
+    get:
+      operationId: get_watch_volume
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RestWatch'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Watches
+    put:
+      operationId: put_watch_volume
+      parameters:
+      - explode: false
+        in: path
+        name: volume_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: URL callback
+        explode: true
+        in: query
+        name: callback
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Request Timeout
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Found
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Bad Request
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Precondition Failed
+        "416":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Range Not satisfiable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Internal Server Error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Not Implemented
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Service Unavailable
+        "504":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Gateway Timeout
+        "507":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestJsonError'
+          description: Insufficient Storage
+      security:
+      - JWT: []
+      tags:
+      - Watches
+components:
+  schemas:
+    BlockDevice:
+      description: Block device information
+      example:
+        available: false
+        devlinks:
+        - ""
+        devmajor: 0
+        devminor: 0
+        devname: ""
+        devpath: ""
+        devtype: ""
+        filesystem:
+          fstype: ""
+          label: ""
+          mountpoint: ""
+          uuid: ""
+        model: ""
+        partition:
+          name: ""
+          number: 0
+          parent: ""
+          scheme: ""
+          typeid: ""
+          uuid: ""
+        size: 0
+      properties:
+        available:
+          description: |-
+            identifies if device is available for use (ie. is not "currently" in
+             use)
+          type: boolean
+        devlinks:
+          description: list of udev generated symlinks by which device may be identified
+          items:
+            type: string
+          type: array
+        devmajor:
+          description: major device number
+          format: int32
+          type: integer
+        devminor:
+          description: minor device number
+          format: int32
+          type: integer
+        devname:
+          description: entry in /dev associated with device
+          type: string
+        devpath:
+          description: official device path
+          type: string
+        devtype:
+          description: currently "disk" or "partition"
+          type: string
+        filesystem:
+          $ref: '#/components/schemas/BlockDevice_filesystem'
+        model:
+          description: device model - useful for identifying mayastor devices
+          type: string
+        partition:
+          $ref: '#/components/schemas/BlockDevice_partition'
+        size:
+          description: size of device in (512 byte) blocks
+          format: int64
+          type: integer
+      required:
+      - available
+      - devlinks
+      - devmajor
+      - devminor
+      - devname
+      - devpath
+      - devtype
+      - filesystem
+      - model
+      - partition
+      - size
+      type: object
+    Child:
+      description: Child information
+      example:
+        rebuildProgress: null
+        state: Unknown
+        uri: ""
+      properties:
+        rebuildProgress:
+          description: current rebuild progress (%)
+          format: int32
+          type: integer
+        state:
+          description: state of the child
+          enum:
+          - Unknown
+          - Online
+          - Degraded
+          - Faulted
+          type: string
+        uri:
+          description: uri of the child device
+          type: string
+      required:
+      - state
+      - uri
+      type: object
+    CreateNexusBody:
+      description: Create Nexus Body JSON
+      example:
+        children:
+        - ""
+        size: 0
+      properties:
+        children:
+          description: |-
+            replica can be iscsi and nvmf remote targets or a local spdk bdev
+             (i.e. bdev:///name-of-the-bdev).
+
+             uris to the targets we connect to
+          items:
+            type: string
+          type: array
+        size:
+          description: size of the device in bytes
+          format: int64
+          type: integer
+      required:
+      - children
+      - size
+      type: object
+    CreatePoolBody:
+      description: Create Pool Body JSON
+      example:
+        disks:
+        - malloc:///disk?size_mb=100
+      properties:
+        disks:
+          description: disk device paths or URIs to be claimed by the pool
+          items:
+            description: |-
+              Pool device URI
+               Can be specified in the form of a file path or a URI
+               eg: /dev/sda, aio:///dev/sda, malloc:///disk?size_mb=100
+            example: malloc:///disk?size_mb=100
+            type: string
+          type: array
+      required:
+      - disks
+      type: object
+    CreateReplicaBody:
+      description: Create Replica Body JSON
+      example:
+        share: "off"
+        size: 0
+        thin: false
+      properties:
+        share:
+          description: protocol to expose the replica over
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: size of the replica in bytes
+          format: int64
+          type: integer
+        thin:
+          description: thin provisioning
+          type: boolean
+      required:
+      - share
+      - size
+      - thin
+      type: object
+    CreateVolumeBody:
+      description: Create Volume Body JSON
+      example:
+        policy:
+          self_heal: false
+          topology: null
+        replicas: 0
+        size: 0
+        topology:
+          explicit: null
+          labelled: null
+      properties:
+        policy:
+          $ref: '#/components/schemas/CreateVolumeBody_policy'
+        replicas:
+          description: number of storage replicas
+          format: int64
+          type: integer
+        size:
+          description: size of the volume in bytes
+          format: int64
+          type: integer
+        topology:
+          $ref: '#/components/schemas/CreateVolumeBody_topology'
+      required:
+      - policy
+      - replicas
+      - size
+      - topology
+      type: object
+    JsonGeneric:
+      description: 'Generic JSON value eg: { "size": 1024 }'
+      example:
+        inner: null
+      properties:
+        inner:
+          type: object
+      required:
+      - inner
+      type: object
+    Nexus:
+      description: Nexus information
+      example:
+        children:
+        - rebuildProgress: null
+          state: Unknown
+          uri: ""
+        deviceUri: ""
+        node: ""
+        rebuilds: 0
+        share: "off"
+        size: 0
+        state: Unknown
+        uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        children:
+          description: array of children
+          items:
+            $ref: '#/components/schemas/Nexus_children'
+          type: array
+        deviceUri:
+          description: |-
+            URI of the device for the volume (missing if not published).
+             Missing property and empty string are treated the same.
+          type: string
+        node:
+          description: id of the mayastor instance
+          type: string
+        rebuilds:
+          description: total number of rebuild tasks
+          format: int32
+          type: integer
+        share:
+          description: protocol used for exposing the nexus
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: size of the volume in bytes
+          format: int64
+          type: integer
+        state:
+          description: current state of the nexus
+          enum:
+          - Unknown
+          - Online
+          - Degraded
+          - Faulted
+          type: string
+        uuid:
+          description: uuid of the nexus
+          format: uuid
+          type: string
+      required:
+      - children
+      - deviceUri
+      - node
+      - rebuilds
+      - share
+      - size
+      - state
+      - uuid
+      type: object
+    Node:
+      description: Node information
+      example:
+        grpcEndpoint: ""
+        id: ""
+        state: Unknown
+      properties:
+        grpcEndpoint:
+          description: grpc_endpoint of the mayastor instance
+          type: string
+        id:
+          description: id of the mayastor instance
+          type: string
+        state:
+          description: deemed state of the node
+          enum:
+          - Unknown
+          - Online
+          - Offline
+          type: string
+      required:
+      - grpcEndpoint
+      - id
+      - state
+      type: object
+    Pool:
+      description: Pool information
+      example:
+        capacity: 0
+        disks:
+        - malloc:///disk?size_mb=100
+        id: ""
+        node: ""
+        state: Unknown
+        used: 0
+      properties:
+        capacity:
+          description: size of the pool in bytes
+          format: int64
+          type: integer
+        disks:
+          description: absolute disk paths claimed by the pool
+          items:
+            description: |-
+              Pool device URI
+               Can be specified in the form of a file path or a URI
+               eg: /dev/sda, aio:///dev/sda, malloc:///disk?size_mb=100
+            example: malloc:///disk?size_mb=100
+            type: string
+          type: array
+        id:
+          description: id of the pool
+          type: string
+        node:
+          description: id of the mayastor instance
+          type: string
+        state:
+          description: current state of the pool
+          enum:
+          - Unknown
+          - Online
+          - Degraded
+          - Faulted
+          type: string
+        used:
+          description: used bytes from the pool
+          format: int64
+          type: integer
+      required:
+      - capacity
+      - disks
+      - id
+      - node
+      - state
+      - used
+      type: object
+    Replica:
+      description: Replica information
+      example:
+        node: ""
+        pool: ""
+        share: "off"
+        size: 0
+        state: unknown
+        thin: false
+        uri: ""
+        uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        node:
+          description: id of the mayastor instance
+          type: string
+        pool:
+          description: id of the pool
+          type: string
+        share:
+          description: protocol used for exposing the replica
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: size of the replica in bytes
+          format: int64
+          type: integer
+        state:
+          description: state of the replica
+          enum:
+          - unknown
+          - online
+          - degraded
+          - faulted
+          type: string
+        thin:
+          description: thin provisioning
+          type: boolean
+        uri:
+          description: uri usable by nexus to access it
+          type: string
+        uuid:
+          description: uuid of the replica
+          format: uuid
+          type: string
+      required:
+      - node
+      - pool
+      - share
+      - size
+      - state
+      - thin
+      - uri
+      - uuid
+      type: object
+    RestJsonError:
+      description: Rest Json Error format
+      example:
+        details: ""
+        error: NotFound
+      properties:
+        details:
+          description: detailed error information
+          type: string
+        error:
+          description: error kind
+          enum:
+          - Timeout
+          - Deserialize
+          - Internal
+          - InvalidArgument
+          - DeadlineExceeded
+          - NotFound
+          - AlreadyExists
+          - PermissionDenied
+          - ResourceExhausted
+          - FailedPrecondition
+          - NotShared
+          - NotPublished
+          - AlreadyPublished
+          - AlreadyShared
+          - Aborted
+          - OutOfRange
+          - Unimplemented
+          - Unavailable
+          - Unauthenticated
+          - Unauthorized
+          - Conflict
+          - FailedPersist
+          - Deleting
+          type: string
+      required:
+      - details
+      - error
+      type: object
+    RestWatch:
+      description: Watch Resource in the store
+      example:
+        callback: ""
+        resource: ""
+      properties:
+        callback:
+          description: callback used to notify the watcher of a change
+          type: string
+        resource:
+          description: id of the resource to watch on
+          type: string
+      required:
+      - callback
+      - resource
+      type: object
+    Specs:
+      description: Specs detailing the requested configuration of the objects.
+      example:
+        nexuses:
+        - children:
+          - ""
+          managed: false
+          node: ""
+          operation: null
+          owner: null
+          share: "off"
+          size: 0
+          state: Unknown
+          uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+        pools:
+        - disks:
+          - malloc:///disk?size_mb=100
+          id: ""
+          labels:
+          - ""
+          node: ""
+          operation: null
+          state: Unknown
+        replicas:
+        - managed: false
+          operation: null
+          owners:
+            nexuses:
+            - 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+            volume: null
+          pool: ""
+          share: "off"
+          size: 0
+          state: Unknown
+          thin: false
+          uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+        volumes:
+        - labels:
+          - ""
+          num_paths: 0
+          num_replicas: 0
+          operation: null
+          protocol: "off"
+          size: 0
+          state: Unknown
+          target_node: null
+          uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        nexuses:
+          description: nexus specs
+          items:
+            $ref: '#/components/schemas/Specs_nexuses'
+          type: array
+        pools:
+          description: pool specs
+          items:
+            $ref: '#/components/schemas/Specs_pools'
+          type: array
+        replicas:
+          description: replica specs
+          items:
+            $ref: '#/components/schemas/Specs_replicas'
+          type: array
+        volumes:
+          description: volume specs
+          items:
+            $ref: '#/components/schemas/Specs_volumes'
+          type: array
+      required:
+      - nexuses
+      - pools
+      - replicas
+      - volumes
+      type: object
+    Volume:
+      description: |-
+        Volumes
+
+         Volume information
+      example:
+        children:
+        - children:
+          - rebuildProgress: null
+            state: Unknown
+            uri: ""
+          deviceUri: ""
+          node: ""
+          rebuilds: 0
+          share: "off"
+          size: 0
+          state: Unknown
+          uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+        protocol: "off"
+        size: 0
+        state: Unknown
+        uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        children:
+          description: array of children nexuses
+          items:
+            $ref: '#/components/schemas/Volume_children'
+          type: array
+        protocol:
+          description: current share protocol
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: size of the volume in bytes
+          format: int64
+          type: integer
+        state:
+          description: current state of the volume
+          enum:
+          - Unknown
+          - Online
+          - Degraded
+          - Faulted
+          type: string
+        uuid:
+          description: name of the volume
+          format: uuid
+          type: string
+      required:
+      - children
+      - protocol
+      - size
+      - state
+      - uuid
+      type: object
+    BlockDevice_filesystem:
+      description: filesystem information in case where a filesystem is present
+      example:
+        fstype: ""
+        label: ""
+        mountpoint: ""
+        uuid: ""
+      properties:
+        fstype:
+          description: 'filesystem type: ext3, ntfs, ...'
+          type: string
+        label:
+          description: volume label
+          type: string
+        mountpoint:
+          description: path where filesystem is currently mounted
+          type: string
+        uuid:
+          description: UUID identifying the volume (filesystem)
+          type: string
+      required:
+      - fstype
+      - label
+      - mountpoint
+      - uuid
+      type: object
+    BlockDevice_partition:
+      description: partition information in case where device represents a partition
+      example:
+        name: ""
+        number: 0
+        parent: ""
+        scheme: ""
+        typeid: ""
+        uuid: ""
+      properties:
+        name:
+          description: partition name
+          type: string
+        number:
+          description: partition number
+          format: int32
+          type: integer
+        parent:
+          description: devname of parent device to which this partition belongs
+          type: string
+        scheme:
+          description: 'partition scheme: gpt, dos, ...'
+          type: string
+        typeid:
+          description: partition type identifier
+          type: string
+        uuid:
+          description: UUID identifying partition
+          type: string
+      required:
+      - name
+      - number
+      - parent
+      - scheme
+      - typeid
+      - uuid
+      type: object
+    CreateVolumeBody_policy_topology_explicit:
+      description: volume topology, explicitly selected
+      example:
+        allowed_nodes:
+        - ""
+        preferred_nodes:
+        - ""
+      properties:
+        allowed_nodes:
+          description: replicas can only be placed on these nodes
+          items:
+            type: string
+          type: array
+        preferred_nodes:
+          description: preferred nodes to place the replicas
+          items:
+            type: string
+          type: array
+      required:
+      - allowed_nodes
+      - preferred_nodes
+      type: object
+    CreateVolumeBody_policy_topology_labelled_node_topology:
+      description: node topology
+      example:
+        exclusion:
+        - ""
+        inclusion:
+        - ""
+      properties:
+        exclusion:
+          description: exclusive labels
+          items:
+            description: |-
+              Excludes resources with the same $label name, eg:
+               "Zone" would not allow for resources with the same "Zone" value
+               to be used for a certain operation, eg:
+               A node with "Zone: A" would not be paired up with a node with "Zone: A",
+               but it could be paired up with a node with "Zone: B"
+               exclusive label NAME in the form "NAME", and not "NAME: VALUE"
+            example: ""
+            type: string
+          type: array
+        inclusion:
+          description: inclusive labels
+          items:
+            description: |-
+              Includes resources with the same $label or $label:$value eg:
+               if label is "Zone: A":
+               A resource with "Zone: A" would be paired up with a resource with "Zone: A",
+               but not with a resource with "Zone: B"
+               if label is "Zone":
+               A resource with "Zone: A" would be paired up with a resource with "Zone: B",
+               but not with a resource with "OtherLabel: B"
+               inclusive label key value in the form "NAME: VALUE"
+            example: ""
+            type: string
+          type: array
+      required:
+      - exclusion
+      - inclusion
+      type: object
+    CreateVolumeBody_policy_topology_labelled_pool_topology:
+      description: pool topology
+      example:
+        inclusion:
+        - ""
+      properties:
+        inclusion:
+          description: inclusive labels
+          items:
+            description: |-
+              Includes resources with the same $label or $label:$value eg:
+               if label is "Zone: A":
+               A resource with "Zone: A" would be paired up with a resource with "Zone: A",
+               but not with a resource with "Zone: B"
+               if label is "Zone":
+               A resource with "Zone: A" would be paired up with a resource with "Zone: B",
+               but not with a resource with "OtherLabel: B"
+               inclusive label key value in the form "NAME: VALUE"
+            example: ""
+            type: string
+          type: array
+      required:
+      - inclusion
+      type: object
+    CreateVolumeBody_policy_topology_labelled:
+      description: volume topology using labels
+      example:
+        node_topology:
+          exclusion:
+          - ""
+          inclusion:
+          - ""
+        pool_topology:
+          inclusion:
+          - ""
+      properties:
+        node_topology:
+          $ref: '#/components/schemas/CreateVolumeBody_policy_topology_labelled_node_topology'
+        pool_topology:
+          $ref: '#/components/schemas/CreateVolumeBody_policy_topology_labelled_pool_topology'
+      required:
+      - node_topology
+      - pool_topology
+      type: object
+    CreateVolumeBody_policy_topology:
+      description: |-
+        topology to choose a replacement replica for self healing
+         (overrides the initial creation topology)
+      example:
+        explicit: null
+        labelled: null
+      properties:
+        explicit:
+          $ref: '#/components/schemas/CreateVolumeBody_policy_topology_explicit'
+        labelled:
+          $ref: '#/components/schemas/CreateVolumeBody_policy_topology_labelled'
+      type: object
+    CreateVolumeBody_policy:
+      description: Volume Healing policy used to determine if and how to replace a
+        replica
+      example:
+        self_heal: false
+        topology: null
+      properties:
+        self_heal:
+          description: |-
+            the server will attempt to heal the volume by itself
+             the client should not attempt to do the same if this is enabled
+          type: boolean
+        topology:
+          $ref: '#/components/schemas/CreateVolumeBody_policy_topology'
+      required:
+      - self_heal
+      type: object
+    CreateVolumeBody_topology:
+      description: |-
+        Volume topology used to determine how to place/distribute the data
+         Should either be labelled or explicit, not both.
+         If neither is used then the control plane will select from all available resources.
+      example:
+        explicit: null
+        labelled: null
+      properties:
+        explicit:
+          $ref: '#/components/schemas/CreateVolumeBody_policy_topology_explicit'
+        labelled:
+          $ref: '#/components/schemas/CreateVolumeBody_policy_topology_labelled'
+      type: object
+    Nexus_children:
+      description: Child information
+      example:
+        rebuildProgress: null
+        state: Unknown
+        uri: ""
+      properties:
+        rebuildProgress:
+          description: current rebuild progress (%)
+          format: int32
+          type: integer
+        state:
+          description: state of the child
+          enum:
+          - Unknown
+          - Online
+          - Degraded
+          - Faulted
+          type: string
+        uri:
+          description: uri of the child device
+          type: string
+      required:
+      - state
+      - uri
+      type: object
+    Specs_operation:
+      description: Record of the operation in progress
+      example:
+        operation: Unknown
+        result: null
+      properties:
+        operation:
+          description: Record of the operation
+          enum:
+          - Unknown
+          - Create
+          - Destroy
+          - Share
+          - Unshare
+          - AddChild
+          - RemoveChild
+          type: string
+        result:
+          description: Result of the operation
+          type: boolean
+      required:
+      - operation
+      type: object
+    Specs_nexuses:
+      description: User specification of a nexus.
+      example:
+        children:
+        - ""
+        managed: false
+        node: ""
+        operation: null
+        owner: null
+        share: "off"
+        size: 0
+        state: Unknown
+        uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        children:
+          description: List of children.
+          items:
+            type: string
+          type: array
+        managed:
+          description: Managed by our control plane
+          type: boolean
+        node:
+          description: Node where the nexus should live.
+          type: string
+        operation:
+          $ref: '#/components/schemas/Specs_operation'
+        owner:
+          description: Volume which owns this nexus, if any
+          format: uuid
+          type: string
+        share:
+          description: Share Protocol
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: Size of the nexus.
+          format: int64
+          type: integer
+        state:
+          description: The state the nexus should eventually reach.
+          enum:
+          - Unknown
+          - Creating
+          - Created
+          - Deleting
+          - Deleted
+          type: string
+        uuid:
+          description: Nexus Id
+          format: uuid
+          type: string
+      required:
+      - children
+      - managed
+      - node
+      - share
+      - size
+      - state
+      - uuid
+      type: object
+    Specs_operation_1:
+      description: Record of the operation in progress
+      example:
+        operation: Unknown
+        result: null
+      properties:
+        operation:
+          description: Record of the operation
+          enum:
+          - Unknown
+          - Create
+          - Destroy
+          type: string
+        result:
+          description: Result of the operation
+          type: boolean
+      required:
+      - operation
+      type: object
+    Specs_pools:
+      description: User specification of a pool.
+      example:
+        disks:
+        - malloc:///disk?size_mb=100
+        id: ""
+        labels:
+        - ""
+        node: ""
+        operation: null
+        state: Unknown
+      properties:
+        disks:
+          description: absolute disk paths claimed by the pool
+          items:
+            description: |-
+              Pool device URI
+               Can be specified in the form of a file path or a URI
+               eg: /dev/sda, aio:///dev/sda, malloc:///disk?size_mb=100
+            example: malloc:///disk?size_mb=100
+            type: string
+          type: array
+        id:
+          description: id of the pool
+          type: string
+        labels:
+          description: Pool labels.
+          items:
+            type: string
+          type: array
+        node:
+          description: id of the mayastor instance
+          type: string
+        operation:
+          $ref: '#/components/schemas/Specs_operation_1'
+        state:
+          description: state of the pool
+          enum:
+          - Unknown
+          - Creating
+          - Created
+          - Deleting
+          - Deleted
+          type: string
+      required:
+      - disks
+      - id
+      - labels
+      - node
+      - state
+      type: object
+    Specs_operation_2:
+      description: Record of the operation in progress
+      example:
+        operation: Unknown
+        result: null
+      properties:
+        operation:
+          description: Record of the operation
+          enum:
+          - Unknown
+          - Create
+          - Destroy
+          - Share
+          - Unshare
+          type: string
+        result:
+          description: Result of the operation
+          type: boolean
+      required:
+      - operation
+      type: object
+    Specs_owners:
+      description: Owner Resource
+      example:
+        nexuses:
+        - 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+        volume: null
+      properties:
+        nexuses:
+          items:
+            format: uuid
+            type: string
+          type: array
+        volume:
+          format: uuid
+          type: string
+      required:
+      - nexuses
+      type: object
+    Specs_replicas:
+      description: User specification of a replica.
+      example:
+        managed: false
+        operation: null
+        owners:
+          nexuses:
+          - 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+          volume: null
+        pool: ""
+        share: "off"
+        size: 0
+        state: Unknown
+        thin: false
+        uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        managed:
+          description: Managed by our control plane
+          type: boolean
+        operation:
+          $ref: '#/components/schemas/Specs_operation_2'
+        owners:
+          $ref: '#/components/schemas/Specs_owners'
+        pool:
+          description: The pool that the replica should live on.
+          type: string
+        share:
+          description: Protocol used for exposing the replica.
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: The size that the replica should be.
+          format: int64
+          type: integer
+        state:
+          description: The state that the replica should eventually achieve.
+          enum:
+          - Unknown
+          - Creating
+          - Created
+          - Deleting
+          - Deleted
+          type: string
+        thin:
+          description: Thin provisioning.
+          type: boolean
+        uuid:
+          description: uuid of the replica
+          format: uuid
+          type: string
+      required:
+      - managed
+      - owners
+      - pool
+      - share
+      - size
+      - state
+      - thin
+      - uuid
+      type: object
+    Specs_operation_3:
+      description: Record of the operation in progress
+      example:
+        operation: Unknown
+        result: null
+      properties:
+        operation:
+          description: Record of the operation
+          enum:
+          - Unknown
+          - Create
+          - Destroy
+          - Share
+          - Unshare
+          - AddReplica
+          - RemoveReplica
+          - Publish
+          - Unpublish
+          type: string
+        result:
+          description: Result of the operation
+          type: boolean
+      required:
+      - operation
+      type: object
+    Specs_volumes:
+      description: User specification of a volume.
+      example:
+        labels:
+        - ""
+        num_paths: 0
+        num_replicas: 0
+        operation: null
+        protocol: "off"
+        size: 0
+        state: Unknown
+        target_node: null
+        uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        labels:
+          description: Volume labels.
+          items:
+            type: string
+          type: array
+        num_paths:
+          description: Number of front-end paths.
+          format: int32
+          type: integer
+        num_replicas:
+          description: Number of children the volume should have.
+          format: int32
+          type: integer
+        operation:
+          $ref: '#/components/schemas/Specs_operation_3'
+        protocol:
+          description: Protocol that the volume should be shared over.
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: Size that the volume should be.
+          format: int64
+          type: integer
+        state:
+          description: State that the volume should eventually achieve.
+          enum:
+          - Unknown
+          - Creating
+          - Created
+          - Deleting
+          - Deleted
+          type: string
+        target_node:
+          description: The node where front-end IO will be sent to
+          type: string
+        uuid:
+          description: Volume Id
+          format: uuid
+          type: string
+      required:
+      - labels
+      - num_paths
+      - num_replicas
+      - protocol
+      - size
+      - state
+      - uuid
+      type: object
+    Volume_children:
+      description: Nexus information
+      example:
+        children:
+        - rebuildProgress: null
+          state: Unknown
+          uri: ""
+        deviceUri: ""
+        node: ""
+        rebuilds: 0
+        share: "off"
+        size: 0
+        state: Unknown
+        uuid: 514ed1c8-7174-49ac-b9cd-ad44ef670a67
+      properties:
+        children:
+          description: array of children
+          items:
+            $ref: '#/components/schemas/Nexus_children'
+          type: array
+        deviceUri:
+          description: |-
+            URI of the device for the volume (missing if not published).
+             Missing property and empty string are treated the same.
+          type: string
+        node:
+          description: id of the mayastor instance
+          type: string
+        rebuilds:
+          description: total number of rebuild tasks
+          format: int32
+          type: integer
+        share:
+          description: protocol used for exposing the nexus
+          enum:
+          - "false"
+          - nvmf
+          - iscsi
+          - nbd
+          type: string
+        size:
+          description: size of the volume in bytes
+          format: int64
+          type: integer
+        state:
+          description: current state of the nexus
+          enum:
+          - Unknown
+          - Online
+          - Degraded
+          - Faulted
+          type: string
+        uuid:
+          description: uuid of the nexus
+          format: uuid
+          type: string
+      required:
+      - children
+      - deviceUri
+      - node
+      - rebuilds
+      - share
+      - size
+      - state
+      - uuid
+      type: object
+  securitySchemes:
+    JWT:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+
